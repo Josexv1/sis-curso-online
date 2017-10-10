@@ -1,12 +1,7 @@
-# Dependency directories
-node_modules/
-*.bat
-.idea
-.*
-*.log
-config.json
-/BUILD
-RELEASE.md
+# Node and Bower modules
+/node_modules/
+/bower_components/
+/vendors/
 
 
 ### Windows template
