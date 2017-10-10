@@ -6,7 +6,5 @@
   "repository": "https://github.com/Josexv1/sis-curso-online",
   "author": "Jose Suarez <jozhee@live.com>",
   "license": "Mozilla Public License 2.0",
-  "dependencies": {
-    "jquery": "^3.2.1"
-  }
+  "dependencies": {}
 }
