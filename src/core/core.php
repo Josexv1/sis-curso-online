@@ -1,46 +1,15 @@
-<?PHP
+<?php
 
 if (!defined('SECURE')) {
     die('Logged Hacking attempt!');
 }
-include_once CORE . '/clase.usuario.php';
-$user = new usuario();
+include_once CORE . '/config.php';
+include_once CORE .'/clase.usuario.php';
+$User = new Usuario;
 if (isset($_GET['do'])) {
     switch ($_GET['do']) {
-/*
-modificaciones
- */
-        case 'modalgo':{
-                if ($user > isLoggedIn()) {
-                    include_once MOD . '/modificar/mod_algo.php';
-                    break;
-                } else {
-                    include_once MOD . '/login.php';
-                }
-
-            }
-
-        //LISTAS
-        case 'listaAlgo':{
-                if ($user->isLoggedIn()) {
-                    include_once MOD . '/listas/lista_algo.php';
-                    break;
-                } else {
-                    include_once MOD . '/login.php';
-                }
-            }
-
-        //ACTUALIZACIONES
-        case 'actualizarAlgo':{
-                if ($user->isLoggedIn()) {
-                    include_once MOD . '/actualizar/actualizar_algo.php';
-                    break;
-                } else {
-                    include_once MOD . '/login.php';
-                }
-            }
         case 'panel':{
-                if ($user->isLoggedIn()) {
+                if ($User->isLoggedIn($db)) {
                     include_once MOD . '/panel.php';
                     break;
                 } else {
@@ -48,7 +17,7 @@ modificaciones
                 }
             }
         case 'login':{
-                if ($user->isLoggedIn()) {
+                if ($User->isLoggedIn($db)) {
                     include_once MOD . '/panel.php';
                     break;
                 } else {
@@ -57,20 +26,36 @@ modificaciones
                 }
             }
         case 'salir':{
-                $user->logout();
+                $User->logout($db);
                 break;
             }
 
-        case 'eliminar':{
-                if ($user->isLoggedIn()) {
-                    include_once MOD . '/eliminar.php';
+        case 'perfil':{
+                if ($User->isLoggedIn($db)) {
+                    include_once MOD . '/perfil.php';
                     break;
                 } else {
                     include_once MOD . '/login.php';
                 }
             }
+        case 'cursos':{
+            if ($User->isLoggedIn($db)){
+                include_once MOD . '/cursos.php';
+                break;
+            } else {
+                include_once MOD . '/login.php';
+            }
+        }
+        case 'usuarios':{
+            if ($User->isLoggedIn($db)){
+                include_once MOD . '/usuarios.php';
+                break;
+            } else {
+                include_once MOD . '/login.php';
+            }
+        }
         default:
-            if ($user->isLoggedIn()) {
+            if ($User->isLoggedIn($db)) {
                 include_once MOD . '/login.php';
                 break;
             } else {
@@ -80,7 +65,7 @@ modificaciones
     } // fin switch
 } //fin if
 else {
-    // si no tenemos ningun do=???? enviamos al login
+    // si no tenemos ningun do=???? enviamos al landing page
     include_once MOD . '/visitante.php';
 }
 

@@ -2,34 +2,19 @@
 if (!defined('SECURE')) {
     die("Logged Hacking attempt!");
 }
-require CORE . '/config.php';
-
-class usuario
+class Usuario
 {
-    private $conn;
-    public function __construct()
+    public function checkExist(PDO $db)
     {
-        $database   = new Database();
-        $db         = $database->dbConnection();
-        $this->conn = $db;
-    }
-
-    public function checkExist()
-    {
-        $query = "  SELECT  ID,
-        password,
-        salt,
-        correo,
-        nivel,
-        logueado
+        $query = "  SELECT  correo
         FROM  usuarios
         WHERE usuario = :usuario
         ";
         $query_params = array(
-            ':usuario' => $_POST['usuario'],
+            ':usuario' => $_POST['usuario']
         );
         try {
-            $stmt   = $this->conn->prepare($query);
+            $stmt   = $db->prepare($query);
             $result = $stmt->execute($query_params);
         } //fin try
          catch (PDOException $ex) {
@@ -47,91 +32,157 @@ class usuario
             ';
         } //fin catch
         $row = $stmt->fetch();
-
-        // si row = true, conseguimos un usuario logueado.
-        // si row logueado = si, retornamos 1
-        // si row logueado = no, retornamos 0
         // si row = false, no conseguimos, retornamos 2
-        // 0 = conseguido y pasamos al login
-        // 1 = conseguido, pero esta logueado, error de login, no pasamos
-        // 2 = no conseguido, error usuario no existe
-
-        if ($row) {
-            if ($row['logueado'] === 'SI') {
+        // 0 = conseguido y pasamos al login (login)
+        // 1 = conseguido error de registro
+        // 2 = no conseguido error de login
+        // 3 = no conseguido pasamos al registro
+        if ($_POST['tipo'] == "register") {
+            if ($row) {
                 $check = 1;
                 return $check;
             } else {
-                $check = 0;
+                $check = 3;
                 return $check;
             }
-        } //fin if row
-        else {
-            $check = 2;
-            return $check;
-        } //fin if else row
+        } else {
+            if ($row) {
+                $check = 0;
+                return $check;
+            } else {
+                $check = 2;
+                return $check;
+            }
+
+        }
+
+
+
     } // fin funcion check
-    public function lasdID()
-    {
-        $stmt = $this->conn->lastInsertId();
+    public function lasdID(PDO $db) {
+        $stmt = $db->lastInsertId();
         return $stmt;
     }
 
-    // public
+    public function registro($post, PDO $db)    {
+        $nivel = 2; // usuario comun
+    $query = "
+        INSERT INTO usuarios (
+            usuario,
+            nombre,
+            apellido,
+            correo,
+            telefono,
+            direccion,
+            password,
+            salt,
+            nivel,
+            cookie,
+            patrocinador,
+            sexo,
+            tipo_documento,
+            cod_documento,
+            pais,
+            ciudad
+        ) VALUES (
+            :usuario,
+            :nombre,
+            :apellido,
+            :correo,
+            :telefono,
+            :direccion,
+            :password,
+            :salt,
+            :nivel,
+            :cookie,
+            :patrocinador,
+            :sexo,
+            :tipo_documento,
+            :cod_documento,
+            :pais,
+            :ciudad
+        )
+    ";
+    $salt = str_replace('=', '.', base64_encode(mcrypt_create_iv(20)));
+    $password = hash('sha512', $_POST['password'] . $salt);
+    for($round = 0; $round < 65536; $round++){
+     $password = hash('sha512', $password . $salt);
+      }
+      $c = 000000;
+    $query_params = array(
+        ':usuario' => $_POST['usuario'],
+        ':nombre' => $_POST['nombre'],
+        ':apellido' => $_POST['apellido'],
+        ':correo' => $_POST['correo'],
+        ':telefono' => $_POST['telefono'],
+        ':direccion' => $_POST['direccion'],
+        ':password' => $password,
+        ':salt' => $salt,
+        ':nivel' => $nivel,
+        ':cookie' => $c,
+        ':patrocinador' => $_POST['patrocinador'],
+        ':sexo' => $_POST['sexo'],
+        ':tipo_documento' => $_POST['tipo_documento'],
+        ':cod_documento' => $_POST['cod_documento'],
+        ':pais' => $_POST['pais'],
+        ':ciudad' => $_POST['ciudad']
+    );
+    try {
+        $stmt = $db->prepare($query);
+        $result = $stmt->execute($query_params);
+    }
+    catch(PDOException $ex){
+     echo "
+    <div class='modal fade' id='Alerta' tabindex='-1' role='dialog' aria-labeledby='AlertaLabel' aria-hidden='false'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+                <h3>¡Error!</h3>
+            </div>
+            <div class='modal-body'>
 
-    // function registro($uname, $email, $upass, $code)
-    // {
-    //   try {
-    //     $password = md5($upass);
-    //     $stmt = $this->conn->prepare("INSERT INTO tbl_users(userName,userEmail,userPass,tokenCode)
-    //                                                  VALUES(:user_name, :user_mail, :user_pass, :active_code)");
-    //     $stmt->bindparam(":user_name", $uname);
-    //     $stmt->bindparam(":user_mail", $email);
-    //     $stmt->bindparam(":user_pass", $password);
-    //     $stmt->bindparam(":active_code", $code);
-    //     $stmt->execute();
-    //     return $stmt;
-    //   }
+                <p>Para registrarse previamente debe haber tenido una cita</p>
+            </div>
+            <div class='modal-footer'>
+            <button type='button' class='btn btn-info' data-dismiss='modal'>¡Entiendo!</button>
+            </div>
+        </div>
+        </div>
+    </div>";
 
-    //   catch(PDOException $ex) {
-    //     echo $ex->getMessage();
-    //   }
-    // }
+};
 
-    public function login($post)
+}
+
+    public function login($post, PDO $db)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE usuario=:usuario");
+            $stmt = $db->prepare("SELECT * FROM usuarios WHERE usuario=:usuario");
             $stmt->execute(array(":usuario" => $_POST['usuario']));
             $userRow = $stmt->fetch();
             if ($stmt->rowCount() == 1) {
-
                 // si podemos agarrar los datos del usuario los usamos, si no exit.
-
-                $id_usuario     = $userRow['ID'];
+                $id_usuario     = $userRow['correo'];
                 $check_password = hash('sha512', $_POST['password'] . $userRow['salt']);
                 for ($round = 0; $round < 65536; $round++) {
                     $check_password = hash('sha512', $check_password . $userRow['salt']);
                 }
-
                 if ($check_password === $userRow['password']) {
-
                     // si el password concuerda colocamos la sesion!
-
                     $numero_aleatorio = mt_rand(1000000, 999999999);
                     $query            = "UPDATE usuarios
-                    SET cookie = :numero, logueado = :logueado
+                    SET cookie = :numero
                     WHERE usuario = :usuario";
                     $query_params = array(
                         ':numero'   => $numero_aleatorio,
-                        ':usuario'  => $userRow['usuario'],
-                        ':logueado' => 'SI',
+                        ':usuario'  => $userRow['usuario']
                     );
                     try {
-                        $stmt   = $this->conn->prepare($query);
+                        $stmt   = $db->prepare($query);
                         $result = $stmt->execute($query_params);
                     } //fin try
                      catch (PDOException $ex) {
-
                         echo '
                         <div class="panel - body">
                         <div class="alertalert - warningalert - dismissable">
@@ -146,23 +197,17 @@ class usuario
                         ';
 
                     } //fin catch
-
                     // implementacion del recordar usuario colocamos la cookie para siempre por defecto.
                     // if ($_POST["recordar"]=="1"){
-
                     setcookie("session", $numero_aleatorio, time() + (60 * 60 * 24 * 365));
-
                     // }//fin if recordar
                     // else{
                     //   setcookie("session", $numero_aleatorio, time()+(60*60));
                     // }//fin else recordar
-
                     header("Location: index.php?do=panel");
                 } // fin if check password
                 else {
-
                     // si la password no concuerda nos vamos a el error de usuario
-
                     header("Location: index.php?do=login&accion=badpass");
                 }
             } // fin if row count
@@ -182,10 +227,10 @@ class usuario
         }
     }
 
-    public function isLoggedIn()
+    public function isLoggedIn(PDO $db)
     {
         if (isset($_COOKIE["session"])) {
-            $query = "  SELECT  logueado
+            $query = "  SELECT  correo
             FROM    usuarios
             WHERE   cookie = :cookie
             ";
@@ -193,10 +238,9 @@ class usuario
                 ':cookie' => $_COOKIE['session'],
             );
             try {
-                $stmt   = $this->conn->prepare($query);
+                $stmt   = $db->prepare($query);
                 $result = $stmt->execute($query_params);
             } catch (PDOException $ex) {
-
                 echo '
                 <div class="panel - body">
                 <div class="alertalert - warningalert - dismissable">
@@ -209,14 +253,8 @@ class usuario
                 </div>
                 </div>
                 ';
-
-            }
-            $row = $stmt->fetch();
-            if ($row['logueado'] == 'SI') {
+            };
                 return true;
-            } else {
-                return false;
-            }
         } else {
             return false;
         }
@@ -227,7 +265,7 @@ class usuario
         header("Location: $url");
     }
 
-    public function logout()
+    public function logout(PDO $db)
     {
         $numero_aleatorio = mt_rand(1000000, 999999999);
         $logueado         = 'NO';
@@ -237,7 +275,7 @@ class usuario
             ':logueado' => $logueado,
         );
         try {
-            $stmt = $this->conn->prepare($query);
+            $stmt = $db->prepare($query);
             $stmt->execute($query_params);
         } catch (PDOException $ex) {
             echo '
@@ -279,16 +317,61 @@ class usuario
         $mail->Send();
     }
 
-    public function getDataBySession($session)
+    public function getDataBySession($session, PDO $db)
     {
-        $query = 'SELECT nombre,
-        apellido,
-        nivel
+        $query = 'SELECT *
         FROM   usuarios
         WHERE  cookie = :id
         ';
         $query_params = array(
             ':id' => $session,
+        );
+        try {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        } catch (PDOException $ex) {
+            echo '
+            <div class="panel - body">
+            <div class="alertalert - warningalert - dismissable">
+            <button aria-hidden="true" class="close" data-dismiss="alert" type="button">
+            ×
+            </button>
+            Tenemos problemas al ejecutar la consulta. El error es el siguiente: ';
+            echo $ex->getMessage();
+            echo '
+            </div>
+            </div>
+            ';
+        }
+        $dataUsuario = $stmt->fetch();
+
+        return $dataUsuario;
+    }
+
+    public function getUsuarios(PDO $db){
+        $query = "  SELECT  *
+        FROM    usuarios
+
+        ";
+        try{
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+        }
+        catch(PDOException $ex){
+        echo "Error > " .$ex->getMessage();
+        }
+        $rows = $stmt->fetchAll();
+        return $rows;
+    }
+
+    public function getPerfil($usuario, PDO $db)
+    {
+        $query = 'SELECT *
+        FROM   usuarios
+        WHERE  usuario = :id
+        ';
+        $query_params = array(
+            ':id' => $usuario,
         );
         try {
             $stmt = $db->prepare($query);

@@ -17,17 +17,17 @@
 
      <!-- CSS
    ================================================== -->
-   <link rel="stylesheet" href="public/css/base.css">
-   <link rel="stylesheet" href="public/css/vendor.css">
-   <link rel="stylesheet" href="public/css/main.css">
+   <link rel="stylesheet" href="vendors/css/base.css">
+   <link rel="stylesheet" href="vendors/css/vendor.css">
+   <link rel="stylesheet" href="vendors/css/main.css">
    <!-- script
    ================================================== -->
-    <script src="public/js/modernizr.js"></script>
-    <script src="public/js/pace.min.js"></script>
+    <script src="vendors/js/modernizr.js"></script>
+    <script src="vendors/js/pace.min.js"></script>
 
    <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="vendors/favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
 </head>
@@ -537,7 +537,7 @@
 
               <div class="col-four tab-full footer-subscribe end">
 
-                  <h4 class="h05">Recibe nuestras publicaciones.</h4>
+                  <h4 class="h05">Recibe nuestras vendorsaciones.</h4>
 
                   <p>Coloca tu correo electronico para recibir todas las noticias</p>
 
@@ -589,9 +589,9 @@
 
    <!-- Java Script
    ================================================== -->
-   <script src="public/js/jquery-2.1.3.min.js"></script>
-   <script src="public/js/plugins.js"></script>
-   <script src="public/js/main.js"></script>
+   <script src="vendors/js/jquery-2.1.3.min.js"></script>
+   <script src="vendors/js/plugins.js"></script>
+   <script src="vendors/js/main.js"></script>
 
 </body>
 

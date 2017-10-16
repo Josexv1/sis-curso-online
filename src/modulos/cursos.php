@@ -21,7 +21,7 @@ $data = $User->getDataBySession($_COOKIE["session"],$db);
                     <div class="breadcrumbs" id="breadcrumbs">
                         <ul class="breadcrumb">
                             <li> <i class="ace-icon fa fa-home home-icon"></i> <a href="index.php?do=panel">Inicio</a> </li>
-                            <li class="active">Principal</li>
+                            <li class="active">Cursos</li>
                         </ul>
                         <!-- /.breadcrumb -->
                         <div class="nav-search" id="nav-search">
@@ -32,25 +32,14 @@ $data = $User->getDataBySession($_COOKIE["session"],$db);
                         </div>
                         <!-- /.nav-search -->
                     </div>
-                    <div class="page-header">
-                        <h1>
-								Principal
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									Principal.
-								</small>
-							</h1> </div>
                     <!-- /.page-header -->
                     <div class="data">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
-                            <div class="alert alert-block alert-success">
-                                <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button> <i class="ace-icon fa fa-check green"></i> Bienvenido al <strong class="green">
-										Sistema para aseguradora.
-										<small>(v1.0)</small>
-									</strong>, Para comenzar a hacer uso del sistema de aseguradora seleccione algun elemento en el panel izquierdo. </div>
-                            <!-- PAGE CONTENT ENDS -->
-                        </div>
+                            <div>
+                            Cursitos :D
+                            </div>
+                        <!-- PAGE CONTENT ENDS -->
                         <!-- /.col -->
                     </div>
                     <!-- /.data -->
