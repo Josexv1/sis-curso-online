@@ -1,5 +1,5 @@
 <?php
-error_reporting(-1);
+error_reporting(0);
 ini_set('display_errors', '1');
 define('SECURE', true);
 define('CORE_DIR', ROOT_DIR . '/core');

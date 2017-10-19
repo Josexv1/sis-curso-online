@@ -13,7 +13,7 @@ if (! defined ( 'SECURE' )) {
     <html lang="en">
 
     <head>
-        <title>Panel principal</title>
+        <title>Perfil</title>
         <?php
 		include_once (STAT . '/header.php');
 		?>

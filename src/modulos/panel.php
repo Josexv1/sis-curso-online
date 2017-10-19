@@ -37,24 +37,161 @@ $data = $User->getDataBySession($_COOKIE["session"],$db);
 								Principal
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Principal.
+									Cursos.
 								</small>
 							</h1> </div>
                     <!-- /.page-header -->
-                    <div class="data">
-                        <div class="col-xs-12">
-                            <!-- PAGE CONTENT BEGINS -->
-                            <div class="alert alert-block alert-success">
-                                <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button> <i class="ace-icon fa fa-check green"></i> Bienvenido al <strong class="green">
-										Sistema para aseguradora.
-										<small>(v1.0)</small>
-									</strong>, Para comenzar a hacer uso del sistema de aseguradora seleccione algun elemento en el panel izquierdo. </div>
-                            <!-- PAGE CONTENT ENDS -->
+                    <div class="row center">
+                        <div class="col-xs-6 col-sm-3 pricing-box">
+                            <div class="widget-box">
+                                <div class="widget-header header-color-dark">
+                                    <h5 class="bigger lighter">Blogger Starter</h5>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <ul class="list-unstyled spaced2">
+                                            <li>
+                                                <i class="icon-ok green"></i>
+                                                Bono de referidos: 16$
+                                            </li>
+
+                                            <li>
+                                                <i class="icon-ok green"></i>
+                                                Bono de recompra de referido:
+                                                <ul>
+                                                    <li>Recompra de 50$, Ganas: 3,5$</li>
+                                                    <li>Recompra de 100$, Ganas: 7$</li>
+                                                    <li>Recompra de 650$, Ganas: 18$</li>
+                                                    <li>Recompra de 1200$, Ganas: 35$</li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <i class="icon-ok green"></i>
+                                                Bono de matriz 10x4: 1$ por persona, Hasta 10.000$
+                                            </li>
+                                        </ul>
+
+                                        <hr />
+                                        <div class="price">
+                                            $125
+                                            <small>/mes</small>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <a href="index.php?do=comprar&curso=blogger&version=starter" class="btn btn-block btn-inverse">
+                                            <i class="icon-shopping-cart bigger-110"></i>
+                                            <span>Comprar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.col -->
+
+                        <div class="col-xs-6 col-sm-3 pricing-box">
+                            <div class="widget-box">
+                                <div class="widget-header header-color-orange">
+                                    <h5 class="bigger lighter">Blogger Medium Pack</h5>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <ul class="list-unstyled spaced2">
+                                        <li>
+                                        <i class="icon-ok green"></i>
+                                        Bono de referidos: 43$
+                                    </li>
+
+                                    <li>
+                                        <i class="icon-ok green"></i>
+                                        Bono de recompra de referido:
+                                        <ul>
+                                            <li>Recompra de 50$, Ganas: 3,5$</li>
+                                            <li>Recompra de 100$, Ganas: 7$</li>
+                                            <li>Recompra de 650$, Ganas: 18$</li>
+                                            <li>Recompra de 1200$, Ganas: 35$</li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <i class="icon-ok green"></i>
+                                        Bono de matriz 10x4: 1$ por persona, Hasta 10.000$
+                                    </li>
+                                        </ul>
+
+                                        <hr />
+                                        <div class="price">
+                                            $650
+                                            <small>/mes</small>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <a href="index.php?do=comprar&curso=blogger&version=medium" class="btn btn-block btn-warning">
+                                            <i class="icon-shopping-cart bigger-110"></i>
+                                            <span>Comprar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-3 pricing-box">
+                            <div class="widget-box">
+                                <div class="widget-header header-color-blue">
+                                    <h5 class="bigger lighter">Blogger Business Package</h5>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                    <ul class="list-unstyled spaced2">
+                                    <li>
+                                    <i class="icon-ok green"></i>
+                                    Bono de referidos: 72$
+                                </li>
+
+                                <li>
+                                    <i class="icon-ok green"></i>
+                                    Bono de recompra de referido:
+                                    <ul>
+                                        <li>Recompra de 50$, Ganas: 3,5$</li>
+                                        <li>Recompra de 100$, Ganas: 7$</li>
+                                        <li>Recompra de 650$, Ganas: 18$</li>
+                                        <li>Recompra de 1200$, Ganas: 35$</li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <i class="icon-ok green"></i>
+                                    Bono de matriz 10x4: 1$ por persona, Hasta 10.000$
+                                </li>
+                                    </ul>
+
+                                        <hr />
+                                        <div class="price">
+                                            $1200
+                                            <small>/mes</small>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <a href="index.php?do=comprar&curso=blogger&version=bussiness" class="btn btn-block btn-primary">
+                                            <i class="icon-shopping-cart bigger-110"></i>
+                                            <span>Comprar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.data -->
-                </div>
+                    </div>
+                </div><!-- PAGE CONTENT ENDS -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div><!-- /.main-content -->
                 <!-- main container inner -->
             </div>
             <!-- /.main-content -->

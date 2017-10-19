@@ -265,9 +265,9 @@
                <div id="folio-wrap" class="bricks-wrapper">
 
                    <div class="brick folio-item">
-                   <div class="item-wrap animate-this" data-src="images/portfolio/gallery/g-shutterbug.jpg" data-sub-html="#01" >
+                   <div class="item-wrap animate-this" data-src="vendors/images/portfolio/gallery/g-shutterbug.jpg" data-sub-html="#01" >
                       <a href="#" class="overlay">
-                          <img src="images/portfolio/shutterbug.jpg" alt="Skaterboy">
+                          <img src="vendors/images/portfolio/shutterbug.jpg" alt="Skaterboy">
                          <div class="item-text">
                              <span class="folio-types">
                                        Web Development
@@ -287,9 +287,9 @@
                     </div> <!-- end folio-item -->
 
                     <div class="brick folio-item">
-                   <div class="item-wrap animate-this" data-src="images/portfolio/gallery/g-yellowwall.jpg" data-sub-html="#02">
+                   <div class="item-wrap animate-this" data-src="vendors/images/portfolio/gallery/g-yellowwall.jpg" data-sub-html="#02">
                       <a href="#" class="overlay">
-                          <img src="images/portfolio/yellowwall.jpg" alt="Shutterbug">
+                          <img src="vendors/images/portfolio/yellowwall.jpg" alt="Shutterbug">
                          <div class="item-text">
                              <span class="folio-types">
                                        Marketing
@@ -309,9 +309,9 @@
                     </div> <!-- end folio-item -->
 
                     <div class="brick folio-item">
-                   <div class="item-wrap animate-this" data-src="images/portfolio/gallery/g-architecture.jpg" data-sub-html="#03" >
+                   <div class="item-wrap animate-this" data-src="vendors/images/portfolio/gallery/g-architecture.jpg" data-sub-html="#03" >
                       <a href="#" class="overlay">
-                          <img src="images/portfolio/architecture.jpg" alt="Explore">
+                          <img src="vendors/images/portfolio/architecture.jpg" alt="Explore">
                          <div class="item-text">
                                     <span class="folio-types">
                                        Web Design
@@ -331,9 +331,9 @@
                     </div> <!-- end folio-item -->
 
                     <div class="brick folio-item">
-                   <div class="item-wrap animate-this"  data-src="images/portfolio/gallery/g-minimalismo.jpg"  data-sub-html="#04" >
+                   <div class="item-wrap animate-this"  data-src="vendors/images/portfolio/gallery/g-minimalismo.jpg"  data-sub-html="#04" >
                       <a href="#" class="overlay">
-                          <img src="images/portfolio/minimalismo.jpg" alt="Minimalismo">
+                          <img src="vendors/images/portfolio/minimalismo.jpg" alt="Minimalismo">
                          <div class="item-text">
                                     <span class="folio-types">
                                        Web Design
@@ -353,9 +353,9 @@
                     </div> <!-- end folio-item -->
 
                     <div class="brick folio-item">
-                   <div class="item-wrap animate-this"  data-src="images/portfolio/gallery/g-skaterboy.jpg"  data-sub-html="#05" >
+                   <div class="item-wrap animate-this"  data-src="vendors/images/portfolio/gallery/g-skaterboy.jpg"  data-sub-html="#05" >
                       <a href="#" class="overlay">
-                          <img src="images/portfolio/skaterboy.jpg" alt="Bicycle">
+                          <img src="vendors/images/portfolio/skaterboy.jpg" alt="Bicycle">
                          <div class="item-text">
                                     <span class="folio-types">
                                        Branding
@@ -375,9 +375,9 @@
                     </div> <!-- end folio-item -->
 
                     <div class="brick folio-item">
-                   <div class="item-wrap animate-this"  data-src="images/portfolio/gallery/g-salad.jpg"  data-sub-html="#06">
+                   <div class="item-wrap animate-this"  data-src="vendors/images/portfolio/gallery/g-salad.jpg"  data-sub-html="#06">
                       <a href="#" class="overlay">
-                          <img src="images/portfolio/salad.jpg" alt="Salad">
+                          <img src="vendors/images/portfolio/salad.jpg" alt="Salad">
                          <div class="item-text">
                                     <span class="folio-types">
                                        Branding

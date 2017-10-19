@@ -54,6 +54,22 @@ if (isset($_GET['do'])) {
                 include_once MOD . '/login.php';
             }
         }
+        case 'comprar':{
+            if ($User->isLoggedIn($db)){
+                include_once MOD . '/comprar.php';
+                break;
+            } else {
+                include_once MOD . '/login.php';
+            }
+        }
+        case 'pagar-bitcoin':{
+            if ($User->isLoggedIn($db)){
+                include_once MOD . '/pagar-bitcoin.php';
+                break;
+            } else {
+                include_once MOD . '/login.php';
+            }
+        }
         default:
             if ($User->isLoggedIn($db)) {
                 include_once MOD . '/login.php';

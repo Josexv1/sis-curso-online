@@ -297,26 +297,6 @@ class Usuario
         header('Location: index.php?accion=salir');
     }
 
-    public function sendMail($email, $message, $subject)
-    {
-        require_once 'mailer/class.phpmailer.php';
-        $mail = new PHPMailer();
-        $mail->IsSMTP();
-        $mail->SMTPDebug  = 0;
-        $mail->SMTPAuth   = true;
-        $mail->SMTPSecure = "ssl";
-        $mail->Host       = "smtp.gmail.com";
-        $mail->Port       = 465;
-        $mail->AddAddress($email);
-        $mail->Username = "your_gmail_id_here@gmail.com";
-        $mail->Password = "your_gmail_password_here";
-        $mail->SetFrom('your_gmail_id_here@gmail.com', 'Coding Cage');
-        $mail->AddReplyTo("your_gmail_id_here@gmail.com", "Coding Cage");
-        $mail->Subject = $subject;
-        $mail->MsgHTML($message);
-        $mail->Send();
-    }
-
     public function getDataBySession($session, PDO $db)
     {
         $query = 'SELECT *
