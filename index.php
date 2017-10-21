@@ -5,4 +5,5 @@ define('SRC', ROOT.'/src');
 define('CORE', SRC.'/core');
 define('MOD', SRC.'/modulos');
 define('STAT', SRC .'/static');
+define('UP', '/src/uploads/');
 require_once CORE.'/core.php';

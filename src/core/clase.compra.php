@@ -13,13 +13,18 @@ class Compra
             curso,
             version,
             fecha,
-            precio
+            precio,
+            txbitcoin,
+            carterabitcoin
         ) VALUES (
             :usuario,
             :curso,
             :version,
             :fecha,
-            :precio
+            :precio,
+            :txbitcoin,
+            :carterabitcoin
+
         )
     ";
     $query_params = array(
@@ -28,6 +33,8 @@ class Compra
         ':version' => $post['version'],
         ':fecha' => $post['fecha'],
         ':precio' => $post['precio'],
+        ':txbitcoin' => $post['txBitcoin'],
+        ':carterabitcoin' => $post['carteraBitcoin']
 
     );
     try {
@@ -57,7 +64,7 @@ class Compra
 };
     }
 
-    public function regFoto($file, $u, $f, $db)
+    public function regFoto($file, $u, $f, PDO $db)
     {
         $query = "UPDATE pagos SET imagenPago = ? WHERE usuario = ? AND fecha = ?";
         try {
@@ -87,5 +94,19 @@ class Compra
             </div>
         </div>";
     };
+    }
+
+    public function verCompras(PDO $db)
+    {
+        $query = "SELECT * FROM pagos WHERE status = 'NoPago'";
+        try{
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+        }
+        catch(PDOException $ex){
+        echo "Error > " .$ex->getMessage();
+        }
+        $rows = $stmt->fetchAll();
+        return $rows;
     }
 }

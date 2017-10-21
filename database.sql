@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2017 a las 01:41:01
+-- Tiempo de generación: 21-10-2017 a las 22:16:17
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -34,6 +34,8 @@ CREATE TABLE `pagos` (
   `version` varchar(45) NOT NULL,
   `fecha` varchar(45) NOT NULL,
   `precio` int(10) NOT NULL,
+  `txbitcoin` varchar(200) NOT NULL,
+  `carterabitcoin` varchar(200) NOT NULL,
   `imagenPago` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -64,6 +66,13 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario`, `nombre`, `apellido`, `correo`, `telefono`, `direccion`, `password`, `salt`, `nivel`, `cookie`, `patrocinador`, `usuarios_referidos`, `sexo`, `tipo_documento`, `cod_documento`, `pais`, `ciudad`) VALUES
+('admin', 'jose', 'suarez', 'admin@admin.com', '+1(334)54494', 'calle francisco', 'f5f368634deb1f07dc15cdd839653b491aed62d59da091fcc4a32ecc668965b21d0a5f7ca826022bc3a17f1add02debd367d72c1a6d1dc63b3e90116587a9f8c', 'Wtjwk1EgykH7me+r9akZLAgInVw.', 1, 843893979, 'erick', '', 'Hombre', 'Cedula', '1123323', 'Colombia', 'Palmira');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -87,7 +96,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

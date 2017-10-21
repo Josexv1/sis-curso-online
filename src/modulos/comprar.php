@@ -90,7 +90,7 @@
                     <input type="text" name="txBitcoin" placeholder="Codigo de transaccion bitcoin">
                     <input type="text" name="carteraBitcoin" placeholder="Tu direccion bitcoin">
                     </br>
-                    <label for="">Seleccione su imagen</label>
+                    <label for="">Suba una captura de la transaccion.</label>
                         <input type="file" name="fileToUpload" id="fileToUpload">
                         <input type="submit" value="Subir pago" name="pagar">
                     </form>
@@ -133,8 +133,9 @@ if (isset($_POST["pagar"])) {
     $r = $com->registrar($_POST, $db);
     if ($r) {
     // si r es positivo, osea que registramos el formulario, procedemos a subir la imagen.
-    $target_dir = SRC . "/uploads/";
+    $target_dir = UP;
     $target_file = $target_dir . $data['usuario'] . '_pago_' . date("Y-h-i-sa") .basename($_FILES["fileToUpload"]["name"]);
+    $fullpath = ROOT . $target_file;
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
     // Check if image file is a actual image or fake image
@@ -180,7 +181,7 @@ if (isset($_POST["pagar"])) {
               </div>";
             // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $fullpath)) {
                 $com->regFoto($target_file, $data['usuario'], $_POST['fecha'], $db);
                 echo "<div class='modal fade' id='Alerta' tabindex='-1' role='dialog' aria-labeledby='AlertaLabel' aria-hidden='false'>
                 <div class='modal-dialog'>

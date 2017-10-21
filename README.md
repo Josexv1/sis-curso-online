@@ -12,3 +12,8 @@ Sistema de cursos online.
 > bower install
 * Abrir el servidor php y mysql (xampp u otro)
 * Importar la base de datos en /helpers
+
+# Defaults
+
+User: admin
+Pass: admin

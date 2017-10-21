@@ -62,9 +62,9 @@ if (isset($_GET['do'])) {
                 include_once MOD . '/login.php';
             }
         }
-        case 'pagar-bitcoin':{
+        case 'verificar-pagos':{
             if ($User->isLoggedIn($db)){
-                include_once MOD . '/pagar-bitcoin.php';
+                include_once MOD . '/verpagos.php';
                 break;
             } else {
                 include_once MOD . '/login.php';
