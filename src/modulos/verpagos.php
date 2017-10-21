@@ -15,6 +15,7 @@
         <?php
 		include_once (STAT . '/header.php');
 		?>
+        <link rel="stylesheet" href="vendors/css/colorbox.min.css" />
     </head>
 
     <body class="no-skin">
@@ -91,11 +92,11 @@
                                             <?php echo $row['carterabitcoin']?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo $row['imagenPago'];?>"><img src="<?php echo $row['imagenPago'];?>" alt="" height="50px" width="50px" ></a>
+                                            <a href="<?php echo $row['imagenPago'];?>" ><img src="<?php echo $row['imagenPago'];?>" alt="" height="50px" width="50px" ></a>
                                         </td>
                                         <td>
                                                <div class="hidden-sm hidden-xs btn-group">
-                                                <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>?do=eliminar&tipo=users&id=<?PHP echo $row['usuario']?>">
+                                                <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>?do=status=users&id=<?PHP echo $row['usuario']?>">
                                                     <button class="btn btn-xs btn-danger" title="Inactivo"> <i class="ace-icon fa fa-times bigger-120"></i> </button>
                                                 </a>
                                             </div>
@@ -130,8 +131,9 @@
 		<![endif]-->
                 <script src="vendors/js/jquery-ui.custom.min.js"></script>
                 <script src="vendors/js/jquery.ui.touch-punch.min.js"></script>
-                <script src="assets/js/jquery.dataTables.min.js"></script>
-		        <script src="assets/js/jquery.dataTables.bootstrap.js"></script>
+                <script src="vendors/js/jquery.dataTables.min.js"></script>
+		        <script src="vendors/js/jquery.dataTables.bootstrap.js"></script>
+                <script src="vendors/js/jquery.colorbox-min.js"></script>
                 <!-- inline scripts related to this page -->
                 <script>
                 // automatic modal
@@ -139,6 +141,7 @@
         		$('#Alerta').modal('show');
     			});
                 </script>
+                <!-- inline scripts related to this page -->
     </body>
 
     </html>

@@ -46,7 +46,7 @@
         <?php
         switch ($data['nivel']) {
             case 1:
-                // si somos admin imprimomos menu de admin.
+                // si somos admin
             echo '
         <!--CONFIG DEL ADMINISTRADOR-->
         <ul class="nav nav-list">
@@ -73,160 +73,30 @@
         ';
         break;
         case 2:
-        // si somos corredor imprimimos menu de corredor
-        echo '<!--CONFIG DEL ADMINISTRADOR-->
+        // si somos usuarios
+        echo '
+        <!--CONFIG DEL ADMINISTRADOR-->
         <ul class="nav nav-list">
             <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa  fa-cogs"></i> <span class="menu-text"> ADMINISTRACION</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
+                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa  fa-cogs"></i> <span class="menu-text">Administracion</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
                 <ul class="submenu">
+                <li class="">
+                    <a href="index.php?do=cursos"> <i class="menu-icon fa fa-caret-right"></i>Mis Cursos</a> <b class="ardata"></b> </li>
+            </ul>
+                  <ul class="submenu">
                     <li class="">
-                        <a href="index.php?do=addaseguradora"> <i class="menu-icon fa fa-caret-right"></i> Agregar aseguradora</a> <b class="ardata"></b> </li>
+                        <a href="index.php?do=mis-ganancias"> <i class="menu-icon fa fa-caret-right"></i> Mis Ganancias</a> <b class="ardata"></b> </li>
                 </ul>
                 <ul class="submenu">
                     <li class="">
-                        <a href="index.php?do=listaaseguradora"> <i class="menu-icon fa fa-caret-right"></i> Aseguradoras</a> <b class="ardata"></b> </li>
+                        <a href="index.php?do=opcion-extra"> <i class="menu-icon fa fa-caret-right"></i> Extras</a> <b class="ardata"></b> </li>
                 </ul>
             </li>
         </ul>
-        <!--PANEL CORREDOR-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-paper-plane"></i> <span class="menu-text"> Panel Corredor</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addcorredor"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=listacorredor"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
             </li>
         </ul>
-        <!--PANEL ASEGURADO-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> Panel Asegurados</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addasegurado"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=listaasegurado"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL BENEFICIARIO-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user-o"></i> <span class="menu-text"> Panel beneficiarios</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addbeneficiario"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=listabeneficiario"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL POLIZAS-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-file-text"></i> <span class="menu-text"> Panel Polizas</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addtpoliza"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=tpoliza"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL SEGUROS-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-handshake-o"></i> <span class="menu-text"> Panel Seguros</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addtseguro"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=tseguro"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>';
-                                        break;
-                                    case 3:
-                                    // si somos usuario imprimimos menu de usuario
-                                    echo '<!--CONFIG DEL ADMINISTRADOR-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa  fa-cogs"></i> <span class="menu-text"> ADMINISTRACION</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addaseguradora"> <i class="menu-icon fa fa-caret-right"></i> Agregar aseguradora</a> <b class="ardata"></b> </li>
-                </ul>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=listaaseguradora"> <i class="menu-icon fa fa-caret-right"></i> Aseguradoras</a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL CORREDOR-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-paper-plane"></i> <span class="menu-text"> Panel Corredor</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addcorredor"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=listacorredor"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL ASEGURADO-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> Panel Asegurados</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addasegurado"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=listaasegurado"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL BENEFICIARIO-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user-o"></i> <span class="menu-text"> Panel beneficiarios</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addbeneficiario"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=listabeneficiario"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL POLIZAS-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-file-text"></i> <span class="menu-text"> Panel Polizas</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addtpoliza"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=tpoliza"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>
-        <!--PANEL SEGUROS-->
-        <ul class="nav nav-list">
-            <li class="">
-                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-handshake-o"></i> <span class="menu-text"> Panel Seguros</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="index.php?do=addtseguro"> <i class="menu-icon fa fa-caret-right"></i> Agregar </a> <b class="ardata"></b> </li>
-                    <li class="">
-                        <a href="index.php?do=tseguro"> <i class="menu-icon fa fa-caret-right"></i> Lista </a> <b class="ardata"></b> </li>
-                </ul>
-            </li>
-        </ul>';
-                    break;
-                     }
-                            ?>
+        ';
+        }
+ ?>
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse"> <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i> </div>
     </div>
