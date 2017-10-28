@@ -6,7 +6,8 @@ class Usuario
 {
     public function checkExist(PDO $db)
     {
-        $query = "  SELECT  correo
+        $query = "
+        SELECT  correo
         FROM  usuarios
         WHERE usuario = :usuario
         ";
@@ -64,9 +65,21 @@ class Usuario
         return $stmt;
     }
 
+    /**
+     * registro: registra al usuario siguiendo estos
+     * Primero: Intentamos subir la imagen al directorio /upload/usuario/nombre.ext
+     * Segundo: Si todo funciona llenamos los datos en la base de datos
+     * lo que registro mas la ruta de la imagen
+     *
+     * @param [array] $post
+     * @param PDO $db
+     * @return void
+     */
+
     public function registro($post, PDO $db)    {
+
         $nivel = 2; // usuario comun
-    $query = "
+        $query = "
         INSERT INTO usuarios (
             usuario,
             nombre,
@@ -158,7 +171,11 @@ class Usuario
     public function login($post, PDO $db)
     {
         try {
-            $stmt = $db->prepare("SELECT * FROM usuarios WHERE usuario=:usuario");
+            $stmt = $db->prepare("
+            SELECT *
+            FROM usuarios
+            WHERE usuario=:usuario
+            ");
             $stmt->execute(array(":usuario" => $_POST['usuario']));
             $userRow = $stmt->fetch();
             if ($stmt->rowCount() == 1) {
@@ -171,7 +188,8 @@ class Usuario
                 if ($check_password === $userRow['password']) {
                     // si el password concuerda colocamos la sesion!
                     $numero_aleatorio = mt_rand(1000000, 999999999);
-                    $query            = "UPDATE usuarios
+                    $query            = "
+                    UPDATE usuarios
                     SET cookie = :numero
                     WHERE usuario = :usuario";
                     $query_params = array(
@@ -230,7 +248,8 @@ class Usuario
     public function isLoggedIn(PDO $db)
     {
         if (isset($_COOKIE["session"])) {
-            $query = "  SELECT  correo
+            $query = "
+            SELECT  correo
             FROM    usuarios
             WHERE   cookie = :cookie
             ";
@@ -268,29 +287,31 @@ class Usuario
     public function logout(PDO $db)
     {
         $numero_aleatorio = mt_rand(1000000, 999999999);
-        $logueado         = 'NO';
-        $query            = 'UPDATE usuarios SET logueado = :logueado WHERE cookie = :usuario';
-        $query_params     = array(
-            ':usuario'  => $_COOKIE['session'],
-            ':logueado' => $logueado,
-        );
-        try {
-            $stmt = $db->prepare($query);
-            $stmt->execute($query_params);
-        } catch (PDOException $ex) {
-            echo '
-            <div class="panel - body">
-            <div class="alertalert - warningalert - dismissable">
-            <button aria-hidden="true" class="close" data-dismiss="alert" type="button">
-            ×
-            </button>
-            Tenemos problemas al ejecutar la consulta. El error es el siguiente: ';
-            echo $ex->getMessage();
-            echo '
-            </div>
-            </div>
-            ';
-        }
+        // $query            = '
+        // UPDATE usuarios
+        // SET logueado = :logueado
+        // WHERE cookie = :usuario
+        // ';
+        // $query_params     = array(
+        //     ':usuario'  => $_COOKIE['session']
+        // );
+        // try {
+        //     $stmt = $db->prepare($query);
+        //     $stmt->execute($query_params);
+        // } catch (PDOException $ex) {
+        //     echo '
+        //     <div class="panel - body">
+        //     <div class="alertalert - warningalert - dismissable">
+        //     <button aria-hidden="true" class="close" data-dismiss="alert" type="button">
+        //     ×
+        //     </button>
+        //     Tenemos problemas al ejecutar la consulta. El error es el siguiente: ';
+        //     echo $ex->getMessage();
+        //     echo '
+        //     </div>
+        //     </div>
+        //     ';
+        // }
         $id_usuario       = 0;
         $numero_aleatorio = 0;
         setcookie('session', '', 0);
@@ -299,7 +320,8 @@ class Usuario
 
     public function getDataBySession($session, PDO $db)
     {
-        $query = 'SELECT *
+        $query = '
+        SELECT *
         FROM   usuarios
         WHERE  cookie = :id
         ';
@@ -374,5 +396,10 @@ class Usuario
 
         return $dataUsuario;
     }
+
+    // transaction
+    // $db->beginTransaction();
+    // $s->execute();
+    // $db->commit();
 
 }

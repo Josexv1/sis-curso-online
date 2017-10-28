@@ -4,7 +4,7 @@
         <div class="navbar-header pull-left">
             <a href="index.php?do=panel" class="navbar-brand">
             <small>
-                <i class="ace-icon fa fa-user-md red"></i>
+                <i class="ace-icon fa fa-handshake-o"></i>
 					4 Ases
 			</small>
             </a>
@@ -12,7 +12,7 @@
         <!--menu-->
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="light-blue"> <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <li class="mygreen"> <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="vendors/avatars/user.jpg" alt="Foto de  <?php echo $data['nombre'] ?>" />
 						<span class="user-info">Bienvenid@:</span>
                         <span class="user-info"><?php echo $data['nombre']?> </span>
@@ -75,7 +75,7 @@
         case 2:
         // si somos usuarios
         echo '
-        <!--CONFIG DEL ADMINISTRADOR-->
+        <!--CONFIG DEL USUARIO-->
         <ul class="nav nav-list">
             <li class="">
                 <a href="#" class="dropdown-toggle"> <i class="menu-icon fa  fa-cogs"></i> <span class="menu-text">Administracion</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>

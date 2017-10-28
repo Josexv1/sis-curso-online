@@ -91,7 +91,7 @@
                     <input type="text" name="carteraBitcoin" placeholder="Tu direccion bitcoin">
                     </br>
                     <label for="">Suba una captura de la transaccion.</label>
-                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <input type="file" name="file" id="file">
                         <input type="submit" value="Subir pago" name="pagar">
                     </form>
 
@@ -132,92 +132,54 @@ if (isset($_POST["pagar"])) {
     $com = new Compra;
     $r = $com->registrar($_POST, $db);
     if ($r) {
-    // si r es positivo, osea que registramos el formulario, procedemos a subir la imagen.
-    $target_dir = UP;
-    $target_file = $target_dir . $data['usuario'] . '_pago_' . date("Y-h-i-sa") .basename($_FILES["fileToUpload"]["name"]);
-    $fullpath = ROOT . $target_file;
-    $uploadOk = 1;
-    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if ($check !== false) {
-            $uploadOk = 1;
-        } else {
-
-            $uploadOk = 0;
-        }
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if ($imageFileType != "jpg"
-    && $imageFileType != "png"
-    && $imageFileType != "jpeg"
-    && $imageFileType != "gif") {
-            $uploadOk = 0;
-        }
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "<div class='modal fade' id='Alerta' tabindex='-1' role='dialog' aria-labeledby='AlertaLabel' aria-hidden='false'>
-            <div class='modal-dialog'>
-                    <div class='modal-content'>
-                <div class='modal-header'>
-                  <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-                  <h3>Error!</h3>
-                </div>
-                <div class='modal-body'>
-                  <p> La imagen no se subio!.</p>
-                </div>
-                <div class='modal-footer'>
-                <button type='button' class='btn btn-info' data-dismiss='modal'>¡Entiendo!</button>
-                </div>
-                    </div>
-                  </div>
-              </div>";
-            // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $fullpath)) {
-                $com->regFoto($target_file, $data['usuario'], $_POST['fecha'], $db);
-                echo "<div class='modal fade' id='Alerta' tabindex='-1' role='dialog' aria-labeledby='AlertaLabel' aria-hidden='false'>
-                <div class='modal-dialog'>
-                        <div class='modal-content'>
-                    <div class='modal-header'>
-                      <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-                      <h3>¡Felicidades!</h3>
-                    </div>
-                    <div class='modal-body'>
-                      <p> La imagen se subio con exito!. Y se guardo en la base de datos!</p>
-                    </div>
-                    <div class='modal-footer'>
-                    <button type='button' class='btn btn-info' data-dismiss='modal'>¡Entiendo!</button>
-                    </div>
-                        </div>
-                      </div>
-                  </div>";
+        $temp = explode(".", $_FILES["file"]["name"]);
+        $path = $_SERVER['DOCUMENT_ROOT'] . UP . $_POST['usuario'];
+        $finalname = 'pago_'. date("Y_h_i_m") . '.' . end($temp);
+        if (($_FILES["file"]["type"] == "image/jpeg")
+        || ($_FILES["file"]["type"] == "image/jpg")
+        || ($_FILES["file"]["type"] == "image/pjpeg")
+        || ($_FILES["file"]["type"] == "image/x-png")
+        || ($_FILES["file"]["type"] == "image/png")
+        && ($_FILES["file"]["size"] < 2000000)) {
+            if ($_FILES["file"]["error"] > 0) {
+                echo "Error " . $_FILES["file"]["error"] . "<br>";
             } else {
-                echo "<div class='modal fade' id='Alerta' tabindex='-1' role='dialog' aria-labeledby='AlertaLabel' aria-hidden='false'>
-                <div class='modal-dialog'>
-                        <div class='modal-content'>
+                if(file_exists($path.$finalname)){
+                    echo "$path$finalname already exists. ";
+                    $oke = false;
+                } else {
+                    if (!is_dir($path)) {
+                        mkdir($path, 0666, true);  // Create non-executable upload folder(s) if needed.
+                    }
+                    if (move_uploaded_file($_FILES["file"]["tmp_name"], $path.'/'.$finalname)) {
+                        $oke = true;
+                    }
+                }
+            }
+        } else {
+            echo "
+            <div class='modal fade' id='Alerta' tabindex='-1' role='dialog' aria-labeledby='AlertaLabel' aria-hidden='false'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
                     <div class='modal-header'>
-                      <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-                      <h3>Error!</h3>
+                        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+                        <h3>¡Error!</h3>
                     </div>
                     <div class='modal-body'>
-                      <p>La imagen pudo ser subida, cencelando pago.</p>
+                        <p>La imagen no pudo ser subida!</p>
+                        <p>La imagen debe ser JPG o PNG, no debe pesar mas de 2MB</p>
                     </div>
                     <div class='modal-footer'>
                     <button type='button' class='btn btn-info' data-dismiss='modal'>¡Entiendo!</button>
                     </div>
-                        </div>
-                      </div>
-                  </div>";
-            }
-        }
+                </div>
+                </div>
+            </div>";
+            $oke = false;
+        }//fin if complejo
     }// end if $r
+    if ($oke) {
+        $com->regFoto($path.'/'.$finalname, $data['usuario'], $_POST['fecha'], $db);
+    }
 }
 ?>

@@ -66,6 +66,8 @@ class Compra
 
     public function regFoto($file, $u, $f, PDO $db)
     {
+        // delete file local path
+        $file = str_replace($_SERVER['DOCUMENT_ROOT'], '', $file);
         $query = "UPDATE pagos SET imagenPago = ? WHERE usuario = ? AND fecha = ?";
         try {
             $stmt = $db->prepare($query);

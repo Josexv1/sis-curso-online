@@ -4,9 +4,7 @@
 						<span class="bigger-120">
 							<span class="blue bolder">Sistema</span>
 							&copy; <?php echo date("Y h:i:sa"); ?>
-
 						</span>
-
 						&nbsp; &nbsp;
 						<span class="action-buttons">
 							<a href="#">
