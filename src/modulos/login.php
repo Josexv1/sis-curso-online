@@ -71,7 +71,11 @@ if ($User->isLoggedIn($db)) {
                     $subir = false;
                 }//fin if complejo
                 if ($subir) {
-                    $User->registro($_POST, $db);
+                    $po = $User->getPosicion($db);
+                    $po = $po['max(b_glob_pos)'];
+                    $post = $_POST;
+                    $post['posicion'] = $po+1;
+                    $User->registro($post, $db);
                 }else {
                     echo "
                     <div class='modal fade' id='Alerta' tabindex='-1' role='dialog' aria-labeledby='AlertaLabel' aria-hidden='false'>
@@ -216,7 +220,7 @@ if ($User->isLoggedIn($db)) {
               <div>
               <label for="form-field-select-1">Residencia</label>
               <select name="pais" class="form-control" id="pais" required>
-              <optgroup label="Pais">
+                <optgroup label="Pais">
               <option value="Colombia">Colombia </option>
               <option value="Ecuador">Ecuador</option>
               <option value="Argentina">Argentina</option>
@@ -224,7 +228,7 @@ if ($User->isLoggedIn($db)) {
               <option value="Perú">Perú</option>
               <option value="Venezuela">Venezuela</option>
               <option value="España">España</option>
-                  </optgroup>
+                </optgroup>
               </select>
               <select class="form-control" name="ciudad" id="coidad" required>
               <optgroup label="Ciudad">
@@ -258,7 +262,7 @@ if ($User->isLoggedIn($db)) {
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> 4 Ases</h1>
+                  <h1><i class="fa fa-foursquare"></i> 4 Ases</h1>
                   <p>©2017 Derechos reservados</p>
                 </div>
               </div>

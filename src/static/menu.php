@@ -53,9 +53,13 @@
             <li class="">
                 <a href="#" class="dropdown-toggle"> <i class="menu-icon fa  fa-cogs"></i> <span class="menu-text">Administracion</span> <b class="ardata fa fa-angle-down"></b> </a> <b class="ardata"></b>
                 <ul class="submenu">
-                <li class="">
+                    <li class="">
                     <a href="index.php?do=cursos"> <i class="menu-icon fa fa-caret-right"></i> Cursos</a> <b class="ardata"></b> </li>
-            </ul>
+                </ul>
+                <ul class="submenu">
+                    <li class="">
+                    <a href="index.php?do=registrar_curso"> <i class="menu-icon fa fa-caret-right"></i> Agregar curso</a> <b class="ardata"></b> </li>
+                </ul>
                   <ul class="submenu">
                     <li class="">
                         <a href="index.php?do=usuarios"> <i class="menu-icon fa fa-caret-right"></i> Usuarios</a> <b class="ardata"></b> </li>
@@ -64,8 +68,12 @@
                     <li class="">
                         <a href="index.php?do=verificar-pagos"> <i class="menu-icon fa fa-caret-right"></i> Verificar pagos</a> <b class="ardata"></b> </li>
                 </ul>
+                <ul class="submenu">
+                <li class="">
+                    <a href="index.php?do=matriz"> <i class="menu-icon fa fa-caret-right"></i> Ver matriz 10x4</a> <b class="ardata"></b> </li>
+            </ul>
             </li>
-        </ul>
+             </ul>
             </li>
         </ul>
 

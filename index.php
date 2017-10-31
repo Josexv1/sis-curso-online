@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 define('SECURE', true);
 define('ROOT', dirname(__FILE__));
 define('SRC', ROOT.'/src');

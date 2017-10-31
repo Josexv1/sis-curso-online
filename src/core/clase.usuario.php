@@ -76,7 +76,8 @@ class Usuario
      * @return void
      */
 
-    public function registro($post, PDO $db)    {
+    public function registro($post, PDO $db)
+    {
 
         $nivel = 2; // usuario comun
         $query = "
@@ -96,7 +97,8 @@ class Usuario
             tipo_documento,
             cod_documento,
             pais,
-            ciudad
+            ciudad,
+            b_glob_pos
         ) VALUES (
             :usuario,
             :nombre,
@@ -113,32 +115,35 @@ class Usuario
             :tipo_documento,
             :cod_documento,
             :pais,
-            :ciudad
+            :ciudad,
+            :b_glob_pos
         )
     ";
     $salt = str_replace('=', '.', base64_encode(mcrypt_create_iv(20)));
-    $password = hash('sha512', $_POST['password'] . $salt);
+    $password = hash('sha512', $post['password'] . $salt);
     for($round = 0; $round < 65536; $round++){
      $password = hash('sha512', $password . $salt);
       }
       $c = 000000;
     $query_params = array(
-        ':usuario' => $_POST['usuario'],
-        ':nombre' => $_POST['nombre'],
-        ':apellido' => $_POST['apellido'],
-        ':correo' => $_POST['correo'],
-        ':telefono' => $_POST['telefono'],
-        ':direccion' => $_POST['direccion'],
+        ':usuario' => $post['usuario'],
+        ':nombre' => $post['nombre'],
+        ':apellido' => $post['apellido'],
+        ':correo' => $post['correo'],
+        ':telefono' => $post['telefono'],
+        ':direccion' => $post['direccion'],
         ':password' => $password,
         ':salt' => $salt,
         ':nivel' => $nivel,
         ':cookie' => $c,
-        ':patrocinador' => $_POST['patrocinador'],
-        ':sexo' => $_POST['sexo'],
-        ':tipo_documento' => $_POST['tipo_documento'],
-        ':cod_documento' => $_POST['cod_documento'],
-        ':pais' => $_POST['pais'],
-        ':ciudad' => $_POST['ciudad']
+        ':patrocinador' => $post['patrocinador'],
+        ':sexo' => $post['sexo'],
+        ':tipo_documento' => $post['tipo_documento'],
+        ':cod_documento' => $post['cod_documento'],
+        ':pais' => $post['pais'],
+        ':ciudad' => $post['ciudad'],
+        ':b_glob_pos' => $post['posicion']
+
     );
     try {
         $stmt = $db->prepare($query);
@@ -165,9 +170,7 @@ class Usuario
     </div>";
 
 };
-
 }
-
     public function login($post, PDO $db)
     {
         try {
@@ -397,9 +400,32 @@ class Usuario
         return $dataUsuario;
     }
 
-    // transaction
-    // $db->beginTransaction();
-    // $s->execute();
-    // $db->commit();
+    public function getPosicion(PDO $db)
+    {
+        $query = "
+        SELECT max(b_glob_pos)
+        FROM usuarios
+        ";
+        try{
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+        }catch (PDOException $ex) {
+            echo '
+            <div class="panel - body">
+            <div class="alertalert - warningalert - dismissable">
+            <button aria-hidden="true" class="close" data-dismiss="alert" type="button">
+            ×
+            </button>
+            Tenemos problemas al ejecutar la consulta. El error es el siguiente: ';
+            echo $ex->getMessage();
+            echo '
+            </div>
+            </div>
+            ';
+        }
+        $d = $stmt->fetch();
+
+        return $d;
+    }
 
 }

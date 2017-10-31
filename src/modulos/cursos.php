@@ -1,5 +1,8 @@
 <?php
 $data = $User->getDataBySession($_COOKIE["session"],$db);
+include_once CORE . '/clase.curso.php';
+$c = new Curso;
+$cursos = $c->imprimirCursos($db);
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -36,8 +39,47 @@ $data = $User->getDataBySession($_COOKIE["session"],$db);
                     <div class="data">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
-                            <div>
-                            Cursitos :D
+                            <div data-for="mostrar-cursos">
+                            <?php foreach ($cursos as $curso) {
+                                            ?>
+                                    <div class="col-xs-6 col-sm-3 pricing-box">
+                            <div class="widget-box">
+                                <div class="widget-header header-color-dark">
+                                    <h5 class="bigger lighter"><?php echo $curso['nombre'] . ' ' . $curso['version'] ?></h5>
+                                    <?php if ($data['nivel'] == 1) {
+                                        echo '<a href="index.php?do=eliminar&tipo=curso&id=' . $curso['codigo']. '" class="btn btn-block btn-warning">
+                                        <i class="icon-shopping-cart bigger-110"></i>
+                                        <span>Eliminar</span>
+                                    </a>';
+                                    }?>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <ul class="list-unstyled spaced2">
+                                            <li>
+                                            <p>
+                                            <?php echo $curso['descripcion']?>
+                                            </p>
+                                        </ul>
+
+                                        <hr />
+                                        <div class="price">
+                                            $<?php echo $curso['precio']?>
+                                            <small>/mes</small>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <a href="index.php?do=comprar&curso=<?php echo $curso['nombre']?>&version=<?php echo $curso['version']?>" class="btn btn-block btn-inverse">
+                                            <i class="icon-shopping-cart bigger-110"></i>
+                                            <span>Comprar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
                             </div>
                         <!-- PAGE CONTENT ENDS -->
                         <!-- /.col -->

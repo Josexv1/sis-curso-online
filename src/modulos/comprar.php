@@ -1,26 +1,14 @@
 <?php
+
     $data = $User->getDataBySession($_COOKIE["session"],$db);
     include_once CORE . '/clase.compra.php';
+    include_once CORE . '/clase.curso.php';
+    $cursos = new Curso;
+    $c = $cursos->getCurso($_GET['curso'], $_GET['version'], $db);
     if (isset($_GET['curso'])) {
         $curso = $_GET['curso'];
     } else {
         header('Location: index.php?do=panel');
-    }
-    if ($curso == 'blogger') {
-        if (isset($_GET['version'])) {
-            switch ($_GET['version']) {
-                case 'starter':{
-                    $precio = 120;
-                    break;
-                }
-                case 'medium':
-                    $precio = 650;
-                    break;
-                case 'bussiness':
-                    $precio = 1200;
-                    break;
-            }
-        }
     }
     ?>
     <!DOCTYPE html>
@@ -68,7 +56,7 @@
                         <div class="well">
                             <h4>Como realizar tu pago.</h4>
                             <ul>
-                                <li>Realiza un deposito o transferencia bancaria a los siguientes numeros de cuenta 0000000000 banco X. O por Paypal al siguiente correo: correo@correo.com</li>
+                                <li>Realiza un deposito de <?php echo $c['precio'] ?>$ o transferencia bancaria a los siguientes numeros de cuenta 0000000000 banco X. O por Paypal al siguiente correo: correo@correo.com</li>
                                 <li>Toma un capture a la transaccion</li>
                                 <li>Sube la foto y espera a que se active tu cuenta.</li>
                             </ul>
@@ -86,7 +74,7 @@
                     <input hidden name="curso" value="<?php echo $_GET['curso']; ?>">
                     <input hidden name="version" value="<?php echo $_GET['version']; ?>">
                     <input hidden name="fecha" value="<?php echo date("Y h:i:sa"); ?>">
-                    <input hidden name="precio" value="<?php echo $precio ?>">
+                    <input hidden name="precio" value="<?php echo $c['precio'] ?>">
                     <input type="text" name="txBitcoin" placeholder="Codigo de transaccion bitcoin">
                     <input type="text" name="carteraBitcoin" placeholder="Tu direccion bitcoin">
                     </br>
@@ -149,10 +137,13 @@ if (isset($_POST["pagar"])) {
                     $oke = false;
                 } else {
                     if (!is_dir($path)) {
-                        mkdir($path, 0666, true);  // Create non-executable upload folder(s) if needed.
+                        mkdir($path, 0755, true);  // Create non-executable upload folder(s) if needed.
+                        echo "Se creo el directorio $path";
+                        $oke = false;
                     }
                     if (move_uploaded_file($_FILES["file"]["tmp_name"], $path.'/'.$finalname)) {
                         $oke = true;
+                        echo "uploaded to: $path/$finalname";
                     }
                 }
             }

@@ -13,7 +13,7 @@ if (isset($_GET['do'])) {
                     include_once MOD . '/panel.php';
                     break;
                 } else {
-                    include_once MOD . '/login.php';
+                    header("Location: index.php?do=login");
                 }
             }
         case 'login':{
@@ -35,7 +35,7 @@ if (isset($_GET['do'])) {
                     include_once MOD . '/perfil.php';
                     break;
                 } else {
-                    include_once MOD . '/login.php';
+                    header("Location: index.php?do=login");
                 }
             }
         case 'cursos':{
@@ -43,7 +43,7 @@ if (isset($_GET['do'])) {
                 include_once MOD . '/cursos.php';
                 break;
             } else {
-                include_once MOD . '/login.php';
+                header("Location: index.php?do=login");
             }
         }
         case 'usuarios':{
@@ -51,7 +51,7 @@ if (isset($_GET['do'])) {
                 include_once MOD . '/usuarios.php';
                 break;
             } else {
-                include_once MOD . '/login.php';
+                header("Location: index.php?do=login");
             }
         }
         case 'comprar':{
@@ -59,7 +59,7 @@ if (isset($_GET['do'])) {
                 include_once MOD . '/comprar.php';
                 break;
             } else {
-                include_once MOD . '/login.php';
+                header("Location: index.php?do=login");
             }
         }
         case 'verificar-pagos':{
@@ -67,8 +67,25 @@ if (isset($_GET['do'])) {
                 include_once MOD . '/verpagos.php';
                 break;
             } else {
-                include_once MOD . '/login.php';
+                header("Location: index.php?do=login");
             }
+        }case 'matriz':{
+            if ($User->isLoggedIn($db)){
+                include_once MOD . '/matriz.php';
+                break;
+            } else {
+                header("Location: index.php?do=login");
+            }
+        }case 'eliminar':{
+            include_once MOD . '/eliminar.php';
+            break;
+        }case 'registrar_curso':{
+            if ($User->isLoggedIn($db)) {
+                include_once MOD . '/registro/curso.php';
+            }else{
+                header('Location: index.php?do=login');
+            }
+            break;
         }
         default:
             if ($User->isLoggedIn($db)) {

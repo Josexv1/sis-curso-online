@@ -21920,3 +21920,52 @@ input.typeahead.scrollable~.tt-dropdown-menu{
 	}
 
 }
+
+
+/*--CSS--*/
+.bloque {
+    text-align: center;
+    vertical-align: middle;
+}
+.circle {
+    background: rgb(189, 189, 189);
+    border-radius: 50px;
+    color: white;
+    height: 90px;
+    width: 90px;
+    font-weight: bold;
+    display: table;
+    margin: 20px auto;
+}
+.circleyellow{
+    background: #FFDC00;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    height: 90px;
+    width: 90px;
+    display: table;
+    margin: 20px auto;
+}
+.circlegreen{
+    background: #2ECC40;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    height: 90px;
+    width: 90px;
+    display: table;
+    margin: 20px auto;
+}
+.circle p {
+    vertical-align: middle;
+    display: table-cell;
+}
+.circlegreen p {
+    vertical-align: middle;
+    display: table-cell;
+}
+.circleyellow p {
+    vertical-align: middle;
+    display: table-cell;
+}
